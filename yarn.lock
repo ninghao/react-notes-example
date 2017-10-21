@@ -3941,6 +3941,10 @@ loglevel@^1.4.1:
   version "1.5.1"
   resolved "http://registry.npm.taobao.org/loglevel/download/loglevel-1.5.1.tgz#189078c94ab9053ee215a0acdbf24244ea0f6502"
 
+lokijs@^1.5.1:
+  version "1.5.1"
+  resolved "http://registry.npm.taobao.org/lokijs/download/lokijs-1.5.1.tgz#7e1b20217142ec2a68ecc5476cbb6c80fc3ffa56"
+
 longest@^1.0.1:
   version "1.0.1"
   resolved "http://registry.npm.taobao.org/longest/download/longest-1.0.1.tgz#30a0b2da38f73770e8294a0d22e6625ed77d0097"
