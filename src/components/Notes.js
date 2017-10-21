@@ -36,6 +36,25 @@ class Notes extends Component {
       })
   }
 
+  createEntity = () => {
+    loadCollection('notes')
+      .then((collection) => {
+        const entity = collection.insert({
+          body: ''
+        })
+
+        db.saveDatabase()
+
+        this.setState((prevState) => {
+          const _entities = prevState.entities
+          _entities.unshift(entity)
+          return {
+            entities: _entities
+          }
+        })
+      })
+  }
+
   render () {
     const entities = this.state.entities
     const noteItems = entities.map((entity) =>
@@ -51,7 +70,8 @@ class Notes extends Component {
           <i className="paw icon"></i>
           Ninghao Notes App _ React.js
         </h4>
-        <button className="ui right floated basic violet button">
+        <button className="ui right floated basic violet button"
+          onClick={ this.createEntity }>
           添加笔记
         </button>
         <div className="ui divided items">
