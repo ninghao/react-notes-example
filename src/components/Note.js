@@ -3,6 +3,7 @@ import Editor from './Editor'
 import moment from 'moment'
 import 'moment/locale/zh-cn'
 import _ from 'lodash'
+import { loadCollection, db } from '../database'
 moment.locale('zh-CN')
 
 class Note extends Component {
@@ -33,6 +34,22 @@ class Note extends Component {
     })
   }
 
+  updateEntity = (event) => {
+    const _body = event.target.value
+
+    this.setState({
+      body: _body
+    })
+
+    loadCollection('notes')
+      .then((collection) => {
+        const entity = this.state.entity
+        entity.body = _body
+        collection.update(entity)
+        db.saveDatabase()
+      })
+  }
+
   render () {
     return (
       <div className="item">
@@ -45,7 +62,8 @@ class Note extends Component {
           </div>
           <div className="extra">
             { this.state.open &&
-              <Editor />
+              <Editor entity={ this.state.entity }
+                updateEntity={ this.updateEntity } />
             }
             { this.words() } 字
             { this.state.open &&
