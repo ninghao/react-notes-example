@@ -11,7 +11,8 @@ class Note extends Component {
     entity: this.props.entity,
     body: this.props.entity.body,
     updated: this.props.entity.meta.updated || this.props.entity.meta.created,
-    open: false
+    open: false,
+    destroyEntity: this.props.destroyEntity
   }
 
   updated () {
@@ -67,9 +68,8 @@ class Note extends Component {
             }
             { this.words() } 字
             { this.state.open &&
-            <i className="right floated trash outline icon">
-
-            </i>
+            <i className="right floated trash outline icon"
+              onClick={ () => this.state.destroyEntity(this.state.entity) } />
             }
           </div>
         </div>

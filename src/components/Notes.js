@@ -55,12 +55,29 @@ class Notes extends Component {
       })
   }
 
+  destroyEntity = (entity) => {
+    const _entities = this.state.entities.filter((_entity) => {
+      return _entity.$loki !== entity.$loki
+    })
+
+    this.setState({
+      entities: _entities
+    })
+
+    loadCollection('notes')
+      .then((collection) => {
+        collection.remove(entity)
+        db.saveDatabase()
+      })
+  }
+
   render () {
     const entities = this.state.entities
     const noteItems = entities.map((entity) =>
       <Note
         key={ entity.$loki }
         entity={ entity }
+        destroyEntity={ this.destroyEntity }
        />
     )
 
