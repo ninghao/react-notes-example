@@ -37,6 +37,14 @@ class Notes extends Component {
   }
 
   render () {
+    const entities = this.state.entities
+    const noteItems = entities.map((entity) =>
+      <Note
+        key={ entity.$loki }
+        entity={ entity }
+       />
+    )
+
     return (
       <div className="ui container notes">
         <h4 className="ui horizontal divider header">
@@ -47,7 +55,7 @@ class Notes extends Component {
           添加笔记
         </button>
         <div className="ui divided items">
-          <Note />
+          { noteItems }
           <span className="ui small disabled header">
             还没有笔记，请按下 '添加笔记' 按钮。
           </span>
